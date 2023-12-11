@@ -1,8 +1,3 @@
-import basic.ExtensionBasic
-import basic.KotlinBasic
-import basic.Lambdas
-import basic.Nullability
-
 fun main(args: Array<String>) {
 
     /**

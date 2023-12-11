@@ -41,7 +41,7 @@ class Lambdas {
 
         /**
          * Common Collection Operators
-          */
+         */
         // filter
         val evenNumbers = list.filter { it % 2 == 0 }
         println("Even Numbers = $evenNumbers")
