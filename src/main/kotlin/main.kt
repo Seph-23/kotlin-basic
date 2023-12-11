@@ -1,3 +1,5 @@
+import basic.Lambdas
+
 fun main(args: Array<String>) {
 
     /**
