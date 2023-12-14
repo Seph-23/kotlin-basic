@@ -71,5 +71,56 @@ class Lambdas {
         println("Zipped List = $zipList")
         val zipWithNext = list1.zipWithNext()
         println("Zip With Next = $zipWithNext")
+
+        /**
+         * Function Types
+         */
+        println()
+        println("*** Function Types ***")
+        functionTypes()
+    }
+
+    private fun functionTypes() {
+        // Function that accepts two (Int, Int) as an argument and returns Int.
+        val sum: (Int, Int) -> Int = { x, y -> x + y }
+        println("sum = $sum")
+        val isEven: (Int) -> Boolean = { i: Int -> i % 2 == 0 }
+        println("isEven = $isEven")
+
+        // Passing a variable of function type as an argument
+        val list = listOf(1, 2, 3, 4)
+        println("list.any = " + list.any(isEven))
+        println("list.filter = " + list.filter(isEven))
+
+        // Member References
+        val people = listOf(
+            Person("Joseph", 23),
+            Person("David", 35),
+            Person("Jack", 14),
+            Person("Weemong", 33)
+        )
+        println("maxBy member reference = " + people.maxBy(Person::age).name)
+
+        // You can store Lambda as a variable, but you cannot store function as a variable.
+        // However, you can use function reference like below:
+        fun isOdd(i: Int): Boolean = i % 2 == 1
+        val predicate = ::isOdd
+        println("predicate = " + predicate(3))
+
+        // Non-bound Reference
+        val agePredicate: (Person, Int) -> Boolean = {
+            person, ageLimit -> person.isOlder(ageLimit)
+        }
+        val alice = Person("Alice", 29)
+        println("Non-bound Reference = " + agePredicate(alice, 21))
+
+        // Bound Reference
+        val agePredicateBound = alice::isOlder
+        println("Bound Reference = " + agePredicateBound(30))
+    }
+
+    private class Person(val name: String, val age: Int) {
+
+        fun isOlder(ageLimit: Int) = age > ageLimit
     }
 }
